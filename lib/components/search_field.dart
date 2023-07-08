@@ -12,9 +12,13 @@ class SearchField extends StatelessWidget {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
-        hintText: 'Search',
-        prefixIcon: Icon(Icons.search),
+        hintText: 'What are you looking for?',
+        prefixIcon: Icon(
+          Icons.search,
+          size: 35,
+        ),
         border: OutlineInputBorder(
+          borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(
             Radius.circular(20.0),
           ),

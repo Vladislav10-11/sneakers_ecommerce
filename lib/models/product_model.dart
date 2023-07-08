@@ -4,8 +4,8 @@ class Product {
   final int id;
   final String title;
   final String description;
-  final String footSize;
-  final String image;
+  final List<String> footSize;
+  final List<String> image;
   final bool favorite;
   final double rating;
   final double price;
@@ -30,10 +30,10 @@ class Product {
 
 class Category {
   final int id;
-  final String name;
+  final String? name;
 
   Category({
     required this.id,
-    required this.name,
+    this.name,
   });
 }

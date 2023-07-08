@@ -2,6 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce/components/product_card.dart';
 import 'package:e_commerce/components/search_field.dart';
 import 'package:e_commerce/providers/cart_provider.dart';
+import 'package:e_commerce/screens/cart_screen.dart';
+import 'package:e_commerce/screens/product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -29,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          elevation: 0,
           backgroundColor: Colors.white,
           leading: Icon(
             Icons.menu_sharp,
@@ -36,12 +39,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: [Icon(Icons.notification_add, color: Colors.black)],
         ),
-        body: Container(
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              SizedBox(
-                height: 20,
-              ),
               SearchField(
                 controller: _controller,
               ),
@@ -57,9 +58,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 options: CarouselOptions(
                   height: 150,
+                  viewportFraction: 1.0,
                   autoPlay: true,
                   reverse: true,
-                  enlargeCenterPage: true,
+                  enlargeCenterPage: false,
                   enlargeStrategy: CenterPageEnlargeStrategy.height,
                   autoPlayInterval: Duration(seconds: 2),
                   onPageChanged: (index, reason) =>
@@ -77,7 +79,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     'Brand',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  Text('See all')
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'See all',
+                      style: TextStyle(color: Colors.green, fontSize: 16),
+                    ),
+                  ),
                 ],
               ),
               Expanded(
@@ -97,7 +105,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: 80,
                             decoration: BoxDecoration(
                                 color: Colors.grey,
-                                borderRadius: BorderRadius.circular(100),
                                 image: DecorationImage(
                                     image: AssetImage(brand.image),
                                     fit: BoxFit.fill)),
@@ -106,7 +113,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ),
-              SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -114,7 +120,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     'New Arrial',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  Text('See all'),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'See all',
+                      style: TextStyle(color: Colors.green, fontSize: 16),
+                    ),
+                  ),
                 ],
               ),
               Expanded(
@@ -125,8 +137,30 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       itemBuilder: (context, index) {
                         Product product = productProvider.products[index];
-                        return ProductCard(productData: product);
-                      }))
+                        return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: ((context) =>
+                                      ProductScreen(productData: product)),
+                                ),
+                              );
+                            },
+                            child: ProductCard(productData: product));
+                      })),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  FloatingActionButton(
+                    child: Icon(Icons.card_giftcard),
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Cart()));
+                    },
+                  ),
+                ],
+              )
             ],
           ),
         ),
@@ -169,6 +203,14 @@ class _HomeScreenState extends State<HomeScreen> {
   ) =>
       Container(
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.red,
+              blurRadius: 4,
+              offset: Offset(4, 8), // Shadow position
+            ),
+          ],
           image: DecorationImage(
             image: AssetImage(uriImage),
             //whatever image you can put here

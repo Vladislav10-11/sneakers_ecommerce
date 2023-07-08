@@ -16,6 +16,7 @@ class _CartState extends State<Cart> {
     final productProvider = Provider.of<CartProvider>(context);
     final cartProducts = productProvider.cartItems;
     return Scaffold(
+      appBar: AppBar(title: Text('CartScreen')),
       body: ListView.builder(
         itemCount: cartProducts.length,
         itemBuilder: (context, index) {
