@@ -1,3 +1,4 @@
+import 'package:e_commerce/constances.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,15 +17,19 @@ class _CartState extends State<Cart> {
     final productProvider = Provider.of<CartProvider>(context);
     final cartProducts = productProvider.cartItems;
     return Scaffold(
-      appBar: AppBar(title: Text('CartScreen')),
+      appBar: AppBar(
+        title: Text('CartScreen'),
+        backgroundColor: greenColor,
+      ),
       body: ListView.builder(
         itemCount: cartProducts.length,
         itemBuilder: (context, index) {
           final cartProduct = cartProducts[index];
           return ListTile(
-            title: Text(cartProduct.title),
+            leading: Image.asset('assets/adik.png'),
+            title: Text('Cart Item'),
             trailing: IconButton(
-              icon: Icon(Icons.remove_shopping_cart),
+              icon: Icon(Icons.delete),
               onPressed: () {
                 productProvider.removeFromCart(cartProduct);
               },

@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce/components/product_card.dart';
 import 'package:e_commerce/components/search_field.dart';
+import 'package:e_commerce/constances.dart';
 import 'package:e_commerce/providers/cart_provider.dart';
 import 'package:e_commerce/screens/cart_screen.dart';
 import 'package:e_commerce/screens/product_screen.dart';
@@ -153,7 +154,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   FloatingActionButton(
-                    child: Icon(Icons.card_giftcard),
+                    child: Icon(
+                      Icons.card_giftcard,
+                    ),
+                    backgroundColor: greenColor,
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Cart()));

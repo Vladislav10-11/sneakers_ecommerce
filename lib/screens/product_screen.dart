@@ -3,6 +3,7 @@ import 'package:e_commerce/components/size_component.dart';
 import 'package:e_commerce/constances.dart';
 import 'package:e_commerce/models/product_model.dart';
 import 'package:e_commerce/providers/cart_provider.dart';
+import 'package:e_commerce/screens/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cube/flutter_cube.dart';
 import 'package:provider/provider.dart';
@@ -130,6 +131,20 @@ class _ProductScreenState extends State<ProductScreen> {
                               size: widget.productData.footSize[index],
                             );
                           })),
+                ],
+              ),
+              Column(
+                children: [
+                  FloatingActionButton(
+                    child: Icon(
+                      Icons.card_giftcard,
+                    ),
+                    backgroundColor: greenColor,
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Cart()));
+                    },
+                  ),
                 ],
               ),
             ],
