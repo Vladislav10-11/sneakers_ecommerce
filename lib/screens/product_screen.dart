@@ -133,20 +133,6 @@ class _ProductScreenState extends State<ProductScreen> {
                           })),
                 ],
               ),
-              Column(
-                children: [
-                  FloatingActionButton(
-                    child: Icon(
-                      Icons.card_giftcard,
-                    ),
-                    backgroundColor: greenColor,
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Cart()));
-                    },
-                  ),
-                ],
-              ),
             ],
           ),
         ),
@@ -162,6 +148,8 @@ class _ProductScreenState extends State<ProductScreen> {
             onPressed: () {
               Provider.of<CartProvider>(context, listen: false)
                   .addToCart(widget.productData);
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Cart()));
             },
           ),
         ),

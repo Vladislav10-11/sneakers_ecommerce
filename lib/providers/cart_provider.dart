@@ -24,7 +24,7 @@ class CartProvider extends ChangeNotifier {
         'assets/shoes_1.png',
         'assets/shoes_1.png',
       ],
-      favorite: false,
+      favorite: true,
       rating: 1.2,
       price: 88.00,
       brand: Brand(
@@ -87,7 +87,15 @@ class CartProvider extends ChangeNotifier {
     ),
   ];
   List<Product> _cartItems = [];
+  List<Product> _favoriteProducts = [];
+  List<Product> get favoriteProducts => _favoriteProducts;
   List<Product> get cartItems => _cartItems;
+
+  void setFavoriteProduct(Product product) {
+    _favoriteProducts.add(product);
+    notifyListeners();
+  }
+
   void addToCart(Product product) {
     final existingProductIndex =
         _cartItems.indexWhere((item) => item.id == product.id);

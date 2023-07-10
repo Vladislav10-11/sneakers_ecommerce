@@ -11,6 +11,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../models/brand_model.dart';
 import '../models/product_model.dart';
+import 'productslist_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -38,7 +39,18 @@ class _HomeScreenState extends State<HomeScreen> {
             Icons.menu_sharp,
             color: Colors.black,
           ),
-          actions: [Icon(Icons.notification_add, color: Colors.black)],
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Cart()));
+                },
+                child: Icon(Icons.shopping_bag, color: Colors.black),
+              ),
+            )
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -81,7 +93,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProductListScreen()));
+                    },
                     child: Text(
                       'See all',
                       style: TextStyle(color: Colors.green, fontSize: 16),
@@ -122,7 +139,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProductListScreen()));
+                    },
                     child: Text(
                       'See all',
                       style: TextStyle(color: Colors.green, fontSize: 16),
@@ -131,40 +153,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               Expanded(
-                  child: GridView.builder(
-                      itemCount: productProvider.products.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                      ),
-                      itemBuilder: (context, index) {
-                        Product product = productProvider.products[index];
-                        return InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: ((context) =>
-                                      ProductScreen(productData: product)),
-                                ),
-                              );
-                            },
-                            child: ProductCard(productData: product));
-                      })),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  FloatingActionButton(
-                    child: Icon(
-                      Icons.card_giftcard,
+                child: GridView.builder(
+                    itemCount: productProvider.products.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
                     ),
-                    backgroundColor: greenColor,
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Cart()));
-                    },
-                  ),
-                ],
-              )
+                    itemBuilder: (context, index) {
+                      Product product = productProvider.products[index];
+                      return InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: ((context) =>
+                                    ProductScreen(productData: product)),
+                              ),
+                            );
+                          },
+                          child: ProductCard(productData: product));
+                    }),
+              ),
             ],
           ),
         ),
@@ -178,10 +186,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.search_outlined,
+              Icons.redeem,
               color: Colors.black,
             ),
-            label: 'Search',
+            label: 'Deals',
           ),
           BottomNavigationBarItem(
             icon: Icon(
