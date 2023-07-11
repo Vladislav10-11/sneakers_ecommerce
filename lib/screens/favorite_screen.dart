@@ -1,4 +1,5 @@
 import 'package:e_commerce/components/product_card.dart';
+import 'package:e_commerce/constances.dart';
 import 'package:e_commerce/providers/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,23 +19,28 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Favorite Screen'),
+        backgroundColor: greenColor,
       ),
-      body: Column(children: [
-        Padding(padding: EdgeInsets.all(20.0)),
-        favoriteProducts != null
+      body: Padding(
+        padding: EdgeInsets.all(20.0),
+        child: favoriteProducts.isNotEmpty
             ? GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                 ),
+                shrinkWrap: true,
                 itemCount: favoriteProducts.length,
                 itemBuilder: (context, index) {
                   return ProductCard(productData: favoriteProducts[index]);
                 },
               )
             : Center(
-                child: Text('No Favorite Products Selected'),
-              )
-      ]),
+                child: Text(
+                  'No Favorite Products Selected',
+                  style: TextStyle(color: blackColor, fontSize: 24),
+                ),
+              ),
+      ),
     );
   }
 }

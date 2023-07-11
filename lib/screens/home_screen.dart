@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:e_commerce/components/bottom_navigation_bar.dart';
 import 'package:e_commerce/components/product_card.dart';
 import 'package:e_commerce/components/search_field.dart';
 import 'package:e_commerce/constances.dart';
 import 'package:e_commerce/providers/cart_provider.dart';
 import 'package:e_commerce/screens/cart_screen.dart';
+import 'package:e_commerce/screens/favorite_screen.dart';
 import 'package:e_commerce/screens/product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -97,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ProductListScreen()));
+                              builder: (context) => FavoriteScreen()));
                     },
                     child: Text(
                       'See all',
@@ -176,35 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(items: const [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_filled,
-              color: Colors.black,
-            ),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.redeem,
-              color: Colors.black,
-            ),
-            label: 'Deals',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.favorite,
-              color: Colors.black,
-            ),
-            label: 'Like',
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-                color: Colors.black,
-              ),
-              label: 'account')
-        ]),
+        bottomNavigationBar: BottomNavigation(),
       ),
     );
   }

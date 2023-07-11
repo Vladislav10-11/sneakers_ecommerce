@@ -1,4 +1,6 @@
+import 'package:e_commerce/providers/cart_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/product_model.dart';
 
@@ -11,6 +13,9 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context);
+    bool isFavorite = Provider.of<CartProvider>(context, listen: false)
+        .isProductFavorite(productData);
     return Container(
       child: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -20,7 +25,17 @@ class ProductCard extends StatelessWidget {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: [Icon(Icons.favorite, size: 20, color: Colors.red)],
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    cartProvider.toggleProductFavorite(productData);
+                  },
+                  child: Icon(
+                    isFavorite ? Icons.favorite : Icons.favorite_border,
+                    color: isFavorite ? Colors.red : null,
+                  ),
+                ),
+              ],
             ),
             Row(
               children: [

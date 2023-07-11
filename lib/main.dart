@@ -1,3 +1,5 @@
+import 'package:e_commerce/components/bottom_navigation_bar.dart';
+import 'package:e_commerce/controllers/navigation.dart';
 import 'package:e_commerce/providers/cart_provider.dart';
 import 'package:e_commerce/screens/cart_screen.dart';
 import 'package:e_commerce/screens/home_screen.dart';
@@ -15,11 +17,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => CartProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<NavigationController>(
+          create: (_) => NavigationController(),
+        ),
+        ChangeNotifierProvider<CartProvider>(
+          create: (_) => CartProvider(),
+        )
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+        home: BottomNavigation(),
       ),
     );
   }

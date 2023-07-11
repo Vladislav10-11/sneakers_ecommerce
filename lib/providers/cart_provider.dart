@@ -91,8 +91,18 @@ class CartProvider extends ChangeNotifier {
   List<Product> get favoriteProducts => _favoriteProducts;
   List<Product> get cartItems => _cartItems;
 
-  void setFavoriteProduct(Product product) {
-    _favoriteProducts.add(product);
+  bool isProductFavorite(Product product) {
+    // Check if the product is in the favorites
+    return _favoriteProducts.contains(product);
+  }
+
+  void toggleProductFavorite(Product product) {
+    // Toggle the favorite status of the product
+    if (isProductFavorite(product)) {
+      _favoriteProducts.remove(product);
+    } else {
+      _favoriteProducts.add(product);
+    }
     notifyListeners();
   }
 
