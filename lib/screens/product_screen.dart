@@ -7,6 +7,9 @@ import 'package:e_commerce/screens/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cube/flutter_cube.dart';
 import 'package:provider/provider.dart';
+import 'dart:core';
+
+import 'package:url_launcher/url_launcher.dart';
 
 class ProductScreen extends StatefulWidget {
   final Product productData;
@@ -113,7 +116,12 @@ class _ProductScreenState extends State<ProductScreen> {
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          var url = Uri.parse('https://blog.logrocket.com/');
+                          if (!await launchUrl(url)) {
+                            throw Exception('Could not launch $url');
+                          }
+                        },
                         child: Text(
                           'Size Chart',
                           style: TextStyle(color: greenColor),

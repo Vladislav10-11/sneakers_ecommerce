@@ -1,6 +1,7 @@
 import 'package:e_commerce/components/product_card.dart';
 import 'package:e_commerce/constances.dart';
 import 'package:e_commerce/providers/cart_provider.dart';
+import 'package:e_commerce/screens/product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,8 +27,19 @@ class ProductListScreen extends StatelessWidget {
               shrinkWrap: true,
               itemCount: productsData.products.length,
               itemBuilder: (context, index) {
-                return ProductCard(
-                  productData: productsData.products[index],
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: ((context) => ProductScreen(
+                            productData: productsData.products[index])),
+                      ),
+                    );
+                  },
+                  child: ProductCard(
+                    productData: productsData.products[index],
+                  ),
                 );
               },
             ),

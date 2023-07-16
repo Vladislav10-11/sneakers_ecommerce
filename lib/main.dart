@@ -4,6 +4,7 @@ import 'package:e_commerce/providers/cart_provider.dart';
 import 'package:e_commerce/screens/cart_screen.dart';
 import 'package:e_commerce/screens/home_screen.dart';
 import 'package:e_commerce/screens/product_screen.dart';
+import 'package:e_commerce/screens/productslist_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: BottomNavigation(),
+        home: ProductListScreen(),
       ),
     );
   }
