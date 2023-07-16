@@ -30,8 +30,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final productProvider = Provider.of<CartProvider>(context);
 
-    TextEditingController _controller = TextEditingController();
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -58,9 +56,6 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              SearchField(
-                controller: _controller,
-              ),
               SizedBox(
                 height: 25,
               ),
@@ -178,7 +173,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        bottomNavigationBar: BottomNavigation(),
       ),
     );
   }
